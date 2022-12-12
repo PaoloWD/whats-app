@@ -64,7 +64,16 @@ export default {
       this.store.selectedUser[newMsg.msg] = newMsg;
 
       this.store.inputMessage = "";
+      setTimeout(this.sendOk, 2000);
       console.log("click");
+    },
+
+    sendOk() {
+      const resp = {
+        msg: "Aiuto",
+        status: "receipt",
+      };
+      this.store.selectedUser[resp.msg] = resp;
     },
   },
 };
