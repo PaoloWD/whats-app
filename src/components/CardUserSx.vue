@@ -29,13 +29,6 @@ export default {
     };
   },
   methods: {
-    testFunction: function () {
-      store.index = this.in;
-
-      console.log("selectedUser", this.store.selectedUser);
-      console.log("chat", this.store.selectedChat);
-      console.log("singleUser: ", this.singleUser);
-    },
     standardMsg: function () {
       const standardMsg = {
         msg: this.store.randomMessagesList[this.in].body,
