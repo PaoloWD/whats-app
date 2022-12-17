@@ -23,11 +23,7 @@
       </div>
       <FilterColSx @search="onSearch"></FilterColSx>
       <div class="container-users">
-        <div
-          @click="(store.selectedUser = singleCard), standardMsg(i)"
-          v-for="(singleCard, i) in store.randomUsersList"
-          :key="i"
-        >
+        <div v-for="(singleCard, i) in store.randomUsersList" :key="i">
           <CardUserSx :singleUser="singleCard" :in="i"></CardUserSx>
         </div>
       </div>
@@ -48,16 +44,6 @@ export default {
   },
 
   methods: {
-    standardMsg: function (i) {
-      const standardMsg = {
-        msg: this.store.randomMessagesList[i].body,
-        status: "receipt",
-      };
-      console.log(standardMsg);
-      //this.$set(this.store.selectedUser, standardMsg.name, standardMsg);
-      this.store.selectedUser[standardMsg] = standardMsg;
-      //console.log("this: ", this);
-    },
     onSearch(filter) {
       this.store.activeFilters = filter;
       fetchUseres(10);

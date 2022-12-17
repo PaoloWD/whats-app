@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="d-flex py-2 px-3 align-items-center gap-3">
+    <div
+      @click="(store.selectedUser = singleUser), standardMsg()"
+      class="d-flex py-2 px-3 align-items-center gap-3"
+    >
       <div>
         <img :src="singleUser.picture.medium" alt="" />
       </div>
@@ -32,6 +35,17 @@ export default {
       console.log("selectedUser", this.store.selectedUser);
       console.log("chat", this.store.selectedChat);
       console.log("singleUser: ", this.singleUser);
+    },
+    standardMsg: function () {
+      const standardMsg = {
+        msg: this.store.randomMessagesList[this.in].body,
+        status: "receipt",
+      };
+      console.log(standardMsg);
+      //this.$set(this.store.selectedUser, standardMsg.name, standardMsg);
+      this.store.selectedUser["msg"] = [standardMsg];
+      console.log(store.selectedUser.msg[0].msg);
+      //console.log("this: ", this);
     },
     //Chiedere se si può fare senza funzione
   },

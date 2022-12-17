@@ -23,7 +23,7 @@
         <div class="mt-5 d-flex flex-column w-100 gap-3">
           <div
             v-if="store.selectedUser !== null"
-            v-for="(chat, i) in store.selectedUser"
+            v-for="(chat, i) in store.selectedUser.msg"
             :class="chat.status === 'receipt' ? 'msg-receipt' : 'msg-sent'"
           >
             {{ chat.msg }}
@@ -57,14 +57,12 @@ export default {
   },
   methods: {
     sendMessage: function () {
-      const newMsg = {
+      store.selectedUser.msg.push({
         msg: this.store.inputMessage,
         status: "sent",
-      };
-      this.store.selectedUser[newMsg.msg] = newMsg;
-
+      });
       this.store.inputMessage = "";
-      setTimeout(this.sendOk, 2000);
+      setTimeout(this.sendOk, 1000);
       console.log("click");
     },
 
@@ -73,7 +71,7 @@ export default {
         msg: "Aiuto",
         status: "receipt",
       };
-      this.store.selectedUser[resp.msg] = resp;
+      this.store.selectedUser.msg.push(resp);
     },
   },
 };
